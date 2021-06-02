@@ -24,14 +24,14 @@
 #ifndef AM_WINC1500_H
 #define AM_WINC1500_H
 
-#define ALARMS_SUPPORT    			// uncomment to enable support for Alarm Widget
-#define SD_SUPPORT        			// uncomment to enable support for SD Widget 
+#define ALARMS_SUPPORT    					// uncomment to enable support for Alarm Widget
+#define SD_SUPPORT        					// uncomment to enable support for SD Widget 
 #define SDLOGGEDATAGRAPH_SUPPORT    // uncomment to enable support for Logged Data Widget
-//#define DEBUG           			// uncomment to enable debugging - You should not need it !
+//#define DEBUG           					// uncomment to enable debugging - You should not need it !
 
 
 #ifdef ARDUINO_SAMD_ZERO
-#error THIS LIBRARY IS NOT FOR ARDUINO ZERO!!!! FOR ZERO, PLEASE USE IOSControllerWINC1500ForZero.
+#error THIS LIBRARY IS NOT FOR ARDUINO ZERO!!!! FOR ZERO, PLEASE USE AM_ZeroWINC1500.
 #endif
 
 #if defined(ARDUINO_AVR_UNO)
