@@ -57,7 +57,7 @@ char pass[] = SECRET_PASS;  // your network password i.g. "MYPASSWORD"
 
 int status = WL_IDLE_STATUS;
 
-Adafruit_WINC1500Server server(80);
+WiFiServer server(80);
 
 /**
 
@@ -96,10 +96,6 @@ void processOutgoingMessages();
 void processAlarms(char *variable);
 void deviceConnected();
 void deviceDisconnected();
-bool checkTwitter(char *variable, char *value);
-
-
-Adafruit_WINC1500 WiFi(WINC_CS, WINC_IRQ, WINC_RST);
 
 /*
 
@@ -113,6 +109,8 @@ Adafruit_WINC1500 WiFi(WINC_CS, WINC_IRQ, WINC_RST);
 #endif
 
 void setup() {
+
+  WiFi.setPins(WINC_CS, WINC_IRQ, WINC_RST);
 
   Serial.begin(9600);
   while (!Serial) {

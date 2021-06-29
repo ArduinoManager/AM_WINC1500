@@ -31,7 +31,7 @@ static  const uint8_t monthDays[]={31,28,31,30,31,30,31,31,30,31,30,31}; // API 
 
 #if defined(ALARMS_SUPPORT)
 
-AMController::AMController(Adafruit_WINC1500Server *server, 
+AMController::AMController(WiFiServer *server, 
 								  void (*doWork)(void), 
 								  void (*doSync)(), 
 								  void (*processIncomingMessages)(char *variable, char *value),
@@ -56,7 +56,7 @@ AMController::AMController(Adafruit_WINC1500Server *server,
 
 
 
-AMController::AMController(Adafruit_WINC1500Server *server, 
+AMController::AMController(WiFiServer *server, 
                              void (*doWork)(void), 
                              void (*doSync)(),
                              void (*processIncomingMessages)(char *variable, char *value),
@@ -126,7 +126,7 @@ void AMController::loop(unsigned long _delay) {
   	
  	_doWork();
  	
-  	Adafruit_WINC1500Client localClient = _server->available();
+  	WiFiClient localClient = _server->available();
   	_pClient = &localClient;
     
   	if (localClient) {

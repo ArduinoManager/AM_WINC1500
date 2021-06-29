@@ -31,7 +31,7 @@
 
 
 #ifdef ARDUINO_SAMD_ZERO
-#error THIS LIBRARY IS NOT FOR ARDUINO ZERO!!!! FOR ZERO, PLEASE USE AM_ZeroWINC1500.
+#error THIS LIBRARY IS NOT FOR ARDUINO ZERO!!!! FOR ZERO, PLEASE USE IOSControllerWINC1500ForZero.
 #endif
 
 #if defined(ARDUINO_AVR_UNO)
@@ -41,7 +41,7 @@
 	#undef SDLOGGEDATAGRAPH_SUPPORT
 #endif
 
-#include <Adafruit_WINC1500.h>
+#include <WiFi101.h>
 
 #if defined(SD_SUPPORT) || defined(SDLOGGEDATAGRAPH_SUPPORT)
 	#include <SD.h>
@@ -50,6 +50,8 @@
 #if defined(ALARMS_SUPPORT)
 
 #include <Adafruit_WINC1500Udp.h>
+x
+
 
 typedef struct  {
 	char 			id[12];  // First character of id is always A
@@ -74,8 +76,8 @@ char											_variable[VARIABLELEN+1];
 char 	   									_value[VALUELEN+1];
 bool	   									_var;
 int       								_idx;
-Adafruit_WINC1500Server 	*_server;
-Adafruit_WINC1500Client  	*_pClient;
+WiFiServer								*_server;
+WiFiClient								*_pClient;
 bool											_initialized;
 
 #ifdef ALARMS_SUPPORT
@@ -158,7 +160,7 @@ public:
 
 #if defined(ALARMS_SUPPORT)
 
-	AMController(Adafruit_WINC1500Server *server, 
+	AMController(WiFiServer *server, 
 								  void (*doWork)(void), 
 								  void (*doSync)(), 
 								  void (*processIncomingMessages)(char *variable, char *value),
@@ -171,7 +173,7 @@ public:
 #endif
 
 
-	AMController(Adafruit_WINC1500Server *server, 
+	AMController(WiFiServer *server, 
 								  void (*doWork)(void), 
 								  void (*doSync)(), 
 								  void (*processIncomingMessages)(char *variable, char *value),

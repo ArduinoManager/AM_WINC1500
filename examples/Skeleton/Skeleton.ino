@@ -51,7 +51,7 @@ IPAddress dns(x, y, t, z);
 IPAddress gateway(x, y, t, z);
 IPAddress subnet(x, y, t, z);
 
-Adafruit_WINC1500Server server(port);
+WiFiServer server(port);
 
 int status = WL_IDLE_STATUS;
 
@@ -74,10 +74,6 @@ void processOutgoingMessages();
 void processAlarms(char *variable);
 void deviceConnected();
 void deviceDisconnected();
-bool checkTwitter(char *variable, char *value);
-
-
-Adafruit_WINC1500 WiFi(WINC_CS, WINC_IRQ, WINC_RST);
 
 /*
 
@@ -91,6 +87,8 @@ Adafruit_WINC1500 WiFi(WINC_CS, WINC_IRQ, WINC_RST);
 #endif
 
 void setup() {
+
+  WiFi.setPins(WINC_CS, WINC_IRQ, WINC_RST);
 
   Serial.begin(9600);
   while (!Serial) {
