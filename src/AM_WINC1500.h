@@ -49,8 +49,7 @@
 
 #if defined(ALARMS_SUPPORT)
 
-#include <Adafruit_WINC1500Udp.h>
-x
+#include <WiFiUdp.h>
 
 
 typedef struct  {
@@ -84,7 +83,7 @@ bool											_initialized;
 #if !defined(ARDUINO_AVR_UNO)
 String 										_alarmFile;
 #endif
-Adafruit_WINC1500UDP			_udp;
+WiFiUDP										_udp;
 IPAddress 								_timeServerAddress;  // NTP Server Address
 bool											_sendNtpRequest;
 byte 											_packetBuffer[48]; 	// buffer to hold incoming and outgoing packets 
@@ -143,7 +142,7 @@ void readVariable(void);
 
 #ifdef ALARMS_SUPPORT
 
-void sendNTPpacket(IPAddress& address, Adafruit_WINC1500UDP udp);
+void sendNTPpacket(IPAddress& address, WiFiUDP udp);
 void breakTime(unsigned long time, int *seconds, int *minutes, int *hours, int *Wday, long *Year, int *Month, int *Day);
 
 void syncTime();

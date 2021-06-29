@@ -541,7 +541,7 @@ void AMController::readTime() {
 }
 
 // send an NTP request to the time server at the given address 
-void AMController::sendNTPpacket(IPAddress& address, Adafruit_WINC1500UDP udp) {
+void AMController::sendNTPpacket(IPAddress& address, WiFiUDP udp) {
   // set all bytes in the buffer to 0
   memset(_packetBuffer, 0, 48); 
   // Initialize values needed to form NTP request
